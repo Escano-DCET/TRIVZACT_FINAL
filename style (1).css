@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient( #819A91, #A7C1A8, #D1D8BE, #EEEFE0);
+}
+
+.quiz-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px black;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: rgb(43, 60, 54);
+}
+
+#login-page input { 
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    border-bottom: 2px solid rgb(68, 68, 68);
+    width: 300px;
+}
+
+#login-page input:focus {
+    outline: none;
+}
+
+#login-page input:hover {
+    border-bottom: 2px solid rgb(116, 116, 116);
+}
+
+.question {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.answers {
+    list-style-type: none;
+    padding: 0;
+}
+
+.answers li {
+    background-color: #EEEFE0;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.answers li:hover {
+    transform: scale(1.13);
+    filter: brightness(1.1);
+}
+
+.correct {
+    filter: brightness(1.1);
+    color: rgb(41, 95, 9);
+    border: 2px solid green;
+}
+
+.incorrect {
+    color: rgb(255, 0, 0);
+    border: 2px solid red;
+    filter: brightness(1.1);
+}
+
+.answer-feedback {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.next-btn {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4f5f59;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.5s;
+}
+
+.next-btn:hover {
+    transform: scale(1.09);
+}
+
+#exit-quiz-btn {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4f5f59;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.5s;
+}
+
+#logout-btn {
+    margin-top: 100px;
+    padding: 10px 20px;
+    background-color: #4f5f59;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.5s;
+    position: absolute;
+    left: 48%;
+    top: 338px;
+    z-index: 10;
+}
+
+#exit-quiz-btn:hover {
+    transform: scale(1.09);
+}
+
+.score-container {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ... (previous CSS content) ... */
+
+#login-page, #front-page {
+    background-color: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px black;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 20px;
+
+}
+
+#login-page input, #login-page button, #front-page p, #front-page button {
+    margin-bottom: 15px;
+}
+
+#login-page button, #front-page button {
+    padding: 10px 20px;
+    background-color: #4f5f59;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    transition: transform 0.5s;
+    width: 200px;
+}
+#login-page button:hover, #front-page button:hover {
+    background-color: #6bbea0;
+}
