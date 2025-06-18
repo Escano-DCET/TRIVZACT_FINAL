@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!--this is for log in page-->
   <div id="login-page">
     <form id="login-form">
       <h1>Welcome To TRIVZACT!</h1>
@@ -19,14 +18,12 @@
     </form>
   </div>
 
-  <!-- FRONT PAGE -->
   <div id="front-page" style="display: none;">
     <h1>Welcome, <span id="user-display"></span>!</h1>
-    <p>Your total score: <span id="total-score-display">0</span></p>
+    <p>Your total current score: <span id="total-score-display">0</span></p>
     <button id="start-quiz-btn" class="styled-button">Start Quiz</button>
   </div>
 
-  <!-- QUIZ CONTAINER -->
   <div id="quiz-container" style="display: none;">
     <h1>Interactive Quiz</h1>
     <div class="question-container">
@@ -46,13 +43,10 @@
     <button id="exit-quiz-btn" class="styled-button">Exit Quiz</button>
     <button id="logout-btn" class="styled-button">Log Out</button>
 
-    <!-- Extra buttons (Next Set, Leaderboard, Trivia) are added via JS -->
   </div>
 
-  <!-- Quiz Questions -->
   <script src="questions.js"></script>
   <script src="trivia.js"></script>
-  <!-- Main App Script -->
   <script src="script.js"></script>
   
 </body>
