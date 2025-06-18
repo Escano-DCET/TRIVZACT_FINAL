@@ -192,3 +192,4 @@ quizContainer.style.display = 'none';
 exitQuizBtn.style.display = 'none';
 
 
+
