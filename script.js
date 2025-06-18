@@ -1,20 +1,21 @@
-const loginPage = document.getElementById('login-page');
-const frontPage = document.getElementById('front-page');
-const quizContainer = document.getElementById('quiz-container');
-const loginBtn = document.getElementById('login-btn');
-const startQuizBtn = document.getElementById('start-quiz-btn');
-const exitQuizBtn = document.getElementById('exit-quiz-btn');
-const usernameInput = document.getElementById('username');
-const loginError = document.getElementById('login-error');
-const userDisplay = document.getElementById('user-display');
-const totalScoreDisplay = document.getElementById('total-score-display');
+const loginPage = document.getElementById('login-page'); // Login page container
+const frontPage = document.getElementById('front-page'); // Front page container after login
+const quizContainer = document.getElementById('quiz-container'); // Quiz section container
+const loginBtn = document.getElementById('login-btn'); // Login button element
+const startQuizBtn = document.getElementById('start-quiz-btn'); // Button to start the quiz
+const exitQuizBtn = document.getElementById('exit-quiz-btn'); // Button to exit the quiz
+const usernameInput = document.getElementById('username'); // Pag Tytype-an ng Username
+const loginError = document.getElementById('login-error'); // Mag didisplay ng error kapag nag fail yung log in
+const userDisplay = document.getElementById('user-display'); // Element to show logged-in username
+const totalScoreDisplay = document.getElementById('total-score-display'); // Element para ma display yung score
 
-const questionContainer = quizContainer.querySelector('.question');
-const answerButtons = quizContainer.querySelectorAll('.answers li');
-const answersContainer = quizContainer.querySelector('.answers');
-const feedback = quizContainer.querySelector('.answer-feedback');
-const nextBtn = quizContainer.querySelector('.next-btn');
-const scoreContainer = quizContainer.querySelector('.score-container');
+
+const questionContainer = quizContainer.querySelector('.question'); // Area to display quiz question
+const answerButtons = quizContainer.querySelectorAll('.answers li'); // List items for possible answers
+const answersContainer = quizContainer.querySelector('.answers'); // Container for answer choices
+const feedback = quizContainer.querySelector('.answer-feedback'); // Mag didisplay ng correct/incorrect kapag pumili ng sagot
+const nextBtn = quizContainer.querySelector('.next-btn'); // Button to go to next question
+const scoreContainer = quizContainer.querySelector('.score-container'); // Container to display final score
 const logoutBtn = document.getElementById('logout-btn');
 
 const users = {};
@@ -32,8 +33,7 @@ function shuffleArray(array) {
   }
 }
 
-// ====== UI Enhancements ======
-// Sign Up and Password
+// Para sa Sign up and Password
 const signUpBtn = document.createElement('button');
 signUpBtn.textContent = 'Sign Up';
 signUpBtn.id = 'signup-btn';
@@ -61,7 +61,7 @@ leaderboardBtn.style.display = 'none';
 quizContainer.appendChild(leaderboardBtn);
 
 const triviaBtn = document.createElement('button');
-triviaBtn.textContent = 'Trivia (Unlock @ 40)';
+triviaBtn.textContent = 'Trivia';
 triviaBtn.className = 'styled-button';
 triviaBtn.style.display = 'none';
 quizContainer.appendChild(triviaBtn);
@@ -76,7 +76,7 @@ function loadUserData() {
   if (stored) Object.assign(users, JSON.parse(stored));
 }
 
-// ====== Sign Up ======
+// Para sa Sign Up 
 signUpBtn.addEventListener('click', function (e) {
   e.preventDefault();
   const username = usernameInput.value.trim();
@@ -98,7 +98,7 @@ signUpBtn.addEventListener('click', function (e) {
   loginError.textContent = 'Sign up successful! You can now log in.';
 });
 
-// ====== Login ======
+// log In
 loginBtn.addEventListener('click', function (e) {
   e.preventDefault();
   const username = usernameInput.value.trim();
@@ -116,7 +116,7 @@ loginBtn.addEventListener('click', function (e) {
   }
 });
 
-// ====== Quiz ======
+// Quiz 
 function loadQuestion() {
   if (currentQuestionIndex < currentQuiz.length) {
     const currentQuestionData = currentQuiz[currentQuestionIndex];
@@ -197,7 +197,7 @@ function finishQuiz() {
   logoutBtn.style.display = 'inline-block';
   nextSetBtn.style.display = 'inline-block';
   leaderboardBtn.style.display = 'inline-block';
-  if (users[loggedInUser].score >= 40) triviaBtn.style.display = 'inline-block';
+  if (users[loggedInUser].score >= 0) triviaBtn.style.display = 'inline-block';
 }
 
 function exitQuiz() {
@@ -231,13 +231,7 @@ nextBtn.addEventListener('click', nextQuestion);
 answerButtons.forEach(answer => answer.addEventListener('click', () => checkAnswer(answer)));
 
 // Leaderboard
-leaderboardBtn.addEventListener('click', () => {
-  const leaderboard = Object.entries(users)
-    .sort(([, a], [, b]) => b.score - a.score)
-    .map(([name, data]) => `${name}: ${data.score}`)
-    .join('\\n');
-  alert('Leaderboard:\\n' + leaderboard);
-});
+leaderboardBtn.addEventListener('click', showLeaderboard);
 
 // Next set of questions
 nextSetBtn.addEventListener('click', () => {
@@ -252,12 +246,10 @@ nextSetBtn.addEventListener('click', () => {
 // List of trivia facts
 if (triviaBtn) {
   triviaBtn.addEventListener('click', () => {
-    localStorage.setItem('loggedInUser', loggedInUser); // Pass user info
+    localStorage.setItem('loggedInUser', loggedInUser);
     window.location.href = 'trivia.html';
   });
 }
-
-
 
 // Responsive font scale
 window.addEventListener('resize', () => {
@@ -271,3 +263,24 @@ frontPage.style.display = 'none';
 quizContainer.style.display = 'none';
 exitQuizBtn.style.display = 'none';
 
+function showLeaderboard() {
+  const leaderboardList = document.getElementById('leaderboard-list');
+  leaderboardList.innerHTML = ''; // Clear previous items
+
+  const sortedUsers = Object.entries(users)
+    .sort(([, a], [, b]) => b.score - a.score);
+
+  sortedUsers.forEach(([name, data], index) => {
+    const li = document.createElement('li');
+    li.textContent = `${index + 1}. ${name}: ${data.score}`;
+    leaderboardList.appendChild(li);
+  });
+
+  document.getElementById('leaderboard-container').style.display = 'block';
+  quizContainer.style.display = 'none'; // hide quiz if visible
+}
+
+function closeLeaderboard() {
+  document.getElementById('leaderboard-container').style.display = 'none';
+  quizContainer.style.display = 'block'; // return to quiz
+}

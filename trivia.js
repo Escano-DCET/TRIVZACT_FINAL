@@ -1,5 +1,3 @@
-// trivia.js
-
 const triviaFacts = [
   "The Eiffel Tower can be 15 cm taller during hot days.",
   "Bananas are berries, but strawberries are not.",
