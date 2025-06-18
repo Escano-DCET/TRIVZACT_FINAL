@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Quiz</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Quiz</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div id="login-page">   
+  <!--this is for log in page-->
+  <div id="login-page">
     <form id="login-form">
-        <h1>Enter your username</h1>
-        <input type="text" id="username" name="username" placeholder="Username"><br><br>
-        <button type="submit" id="login-btn">Log In</button>
-        <p id="login-error" style="color: red; display: none;">Invalid username.</p>
+      <h1>Welcome To TRIVZACT!</h1>
+      <input type="text" id="username" name="username" placeholder="Username"><br><br>
+
+      <button type="submit" id="login-btn" class="styled-button">Log In</button>
+      <p id="login-error" style="color: red; display: none;">Invalid username or password.</p>
     </form>
+  </div>
+
+  <!-- FRONT PAGE -->
+  <div id="front-page" style="display: none;">
+    <h1>Welcome, <span id="user-display"></span>!</h1>
+    <p>Your total score: <span id="total-score-display">0</span></p>
+    <button id="start-quiz-btn" class="styled-button">Start Quiz</button>
+  </div>
+
+  <!-- QUIZ CONTAINER -->
+  <div id="quiz-container" style="display: none;">
+    <h1>Interactive Quiz</h1>
+    <div class="question-container">
+      <div class="question"></div>
+      <ul class="answers">
+        <li class="answer"></li>
+        <li class="answer"></li>
+        <li class="answer"></li>
+        <li class="answer"></li>
+      </ul>
     </div>
 
-    <div id="front-page" style="display: none;">
-        <h1>Welcome, <span id="user-display"></span>!</h1>
-        <p>Your total score: <span id="total-score-display">0</span></p>
-        <button id="start-quiz-btn">Start Quiz</button>
-    </div>
+    <div class="answer-feedback"></div>
+    <button class="next-btn styled-button">Next Question</button>
+    <div class="score-container"></div><br>
 
-    <div id="quiz-container" style="display: none;">
-        <h1>Interactive Quiz</h1>
-        <div class="question-container">
-            <div class="question"></div>
-            <ul class="answers">
-                <li class="answer"></li>
-                <li class="answer"></li>
-                <li class="answer"></li>
-                <li class="answer"></li>
-            </ul>
-        </div>
-        <div class="answer-feedback"></div>
-        <button class="next-btn">Next Question</button>
-        <div class="score-container"></div><br>
-        <button id="exit-quiz-btn">Exit Quiz</button>
-        <button id="logout-btn">Log Out</button>
-    </div>
+    <button id="exit-quiz-btn" class="styled-button">Exit Quiz</button>
+    <button id="logout-btn" class="styled-button">Log Out</button>
 
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+    <!-- Extra buttons (Next Set, Leaderboard, Trivia) are added via JS -->
+  </div>
 
+  <!-- Quiz Questions -->
+  <script src="questions.js"></script>
+  <script src="trivia.js"></script>
+  <!-- Main App Script -->
+  <script src="script.js"></script>
+  
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trivia Facts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Trivia Unlocked!</h1>
+    <div id="trivia-facts"></div>
+    <button onclick="window.location.href='index.html'" class="styled-button">Back to Home</button>
+  </div>
+
+  <script src="trivia.js"></script>
+  <script>
+    // Get score from local storage
+    const users = JSON.parse(localStorage.getItem('quizUsers')) || {};
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const userScore = users[loggedInUser]?.score || 0;
+
+    const allowedCount = Math.floor(userScore / 10);
+    const factsContainer = document.getElementById('trivia-facts');
+
+    if (allowedCount === 0) {
+      factsContainer.innerHTML = '<p>You need at least 10 points to view trivia facts!</p>';
+    } else {
+      let output = '<ul>';
+      for (let i = 0; i < Math.min(allowedCount, triviaFacts.length); i++) {
+        output += `<li>${triviaFacts[i]}</li>`;
+      }
+      output += '</ul>';
+      factsContainer.innerHTML = output;
+    }
+  </script>
+</body>
+</html>
